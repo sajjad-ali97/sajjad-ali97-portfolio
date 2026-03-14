@@ -140,4 +140,288 @@
       font-size:13px;
       margin:0 0 4px;
     }
-    .
+    .info-box .value{
+      margin:0;
+      font-weight:700;
+    }
+    section{
+      padding:22px 0;
+    }
+    .section-card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:34px;
+      box-shadow:0 10px 30px rgba(15,23,42,.05);
+    }
+    .section-title{
+      margin:0 0 10px;
+      font-size:30px;
+    }
+    .section-text{
+      margin:0;
+      color:var(--muted);
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+    .project{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:28px;
+      box-shadow:0 10px 30px rgba(15,23,42,.05);
+    }
+    .project .tag{
+      display:inline-block;
+      font-size:12px;
+      font-weight:700;
+      border-radius:999px;
+      padding:7px 12px;
+      background:#eff6ff;
+      color:#1d4ed8;
+      margin-bottom:14px;
+    }
+    .project h4{
+      margin:0 0 10px;
+      font-size:22px;
+    }
+    .project p{
+      margin:0;
+      color:var(--muted);
+    }
+    .project a{
+      display:inline-block;
+      margin-top:16px;
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:700;
+    }
+    .skills{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px 32px;
+      margin-top:18px;
+    }
+    .skill-item h5{
+      margin:0 0 4px;
+      font-size:16px;
+    }
+    .skill-item p{
+      margin:0;
+      color:var(--muted);
+    }
+    .list{
+      margin:14px 0 0;
+      padding-left:18px;
+      color:var(--muted);
+    }
+    .footer-cta{
+      background:var(--primary);
+      color:white;
+      border-radius:26px;
+      padding:34px;
+      box-shadow:0 10px 30px rgba(15,23,42,.10);
+    }
+    .footer-cta p{
+      color:#cbd5e1;
+      margin:8px 0 0;
+    }
+    .footer-links{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .footer-links a{
+      text-decoration:none;
+      padding:12px 18px;
+      border-radius:14px;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.18);
+      color:white;
+    }
+    .footer-links a.primary{
+      background:white;
+      color:var(--primary);
+      border-color:white;
+    }
+    @media (max-width: 900px){
+      .hero,.grid-2,.skills{
+        grid-template-columns:1fr;
+      }
+      .hero h2{
+        font-size:34px;
+      }
+      .nav-inner{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <h1>Sajjad Ali Alhidary</h1>
+        <p>Full Stack Developer</p>
+      </div>
+      <nav class="menu">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="badge">Laravel • Full Stack • Portfolio</span>
+        <h2>Building clean and practical web solutions.</h2>
+        <p>
+          Full Stack Developer focused on Laravel-based web applications, backend systems,
+          database design, and practical digital solutions for companies, laboratories,
+          and business platforms.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="Sajjad_Ali_Alhidary_CV.pdf" download>Download CV</a>
+          <a class="btn btn-secondary" href="#projects">View Projects</a>
+        </div>
+
+        <div class="actions" style="margin-top:14px;">
+          <a class="btn btn-secondary" href="https://github.com/sajjad-ali97" target="_blank">GitHub</a>
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/sajjad-ali-36b603284/" target="_blank">LinkedIn</a>
+          <a class="btn btn-secondary" href="mailto:abdabdali2010@gmail.com">Email</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="info-box">
+          <p class="label">Location</p>
+          <p class="value">Karbala, Iraq</p>
+        </div>
+        <div class="info-box">
+          <p class="label">Focus</p>
+          <p class="value">Laravel, REST APIs, MySQL, TailwindCSS</p>
+        </div>
+        <div class="info-box">
+          <p class="label">Current Goal</p>
+          <p class="value">Build modern web platforms and grow as a strong Full Stack Developer.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-card">
+        <h3 class="section-title">About Me</h3>
+        <p class="section-text">
+          I build web applications with a strong focus on backend logic, clean structure,
+          database design, and practical user-facing solutions. I enjoy learning through
+          official documentation, improving continuously, and working on real projects that
+          solve business and scientific needs.
+        </p>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h3 class="section-title">Featured Projects</h3>
+      <p class="section-text">Selected work that reflects my current technical direction.</p>
+
+      <div class="grid-2" style="margin-top:18px;">
+        <article class="project">
+          <span class="tag">Engineering Web App</span>
+          <h4>ANFIS Road Maintenance System</h4>
+          <p>
+            Scientific web application for estimating road maintenance costs using
+            engineering parameters and intelligent models.
+          </p>
+          <a href="https://anfis.online/" target="_blank">View Project →</a>
+        </article>
+
+        <article class="project">
+          <span class="tag" style="background:#ecfdf5;color:#047857;">Business Website</span>
+          <h4>Mawrid Al Arab Company Website</h4>
+          <p>
+            Company website presenting products, categories, and business information
+            with a clean commercial interface.
+          </p>
+          <a href="http://77.237.236.206:8080/" target="_blank">View Project →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-card">
+        <h3 class="section-title">Technical Skills</h3>
+        <div class="skills">
+          <div class="skill-item">
+            <h5>Backend</h5>
+            <p>PHP, Laravel, REST APIs</p>
+          </div>
+          <div class="skill-item">
+            <h5>Frontend</h5>
+            <p>HTML, CSS, TailwindCSS, JavaScript, Alpine.js</p>
+          </div>
+          <div class="skill-item">
+            <h5>Database</h5>
+            <p>MySQL, Database Design, Indexing, Optimization</p>
+          </div>
+          <div class="skill-item">
+            <h5>Architecture</h5>
+            <p>MVC, Service Layer, Learning Clean Architecture principles</p>
+          </div>
+          <div class="skill-item">
+            <h5>Tools</h5>
+            <p>Git, GitHub, Linux, Nginx</p>
+          </div>
+          <div class="skill-item">
+            <h5>Note</h5>
+            <p>These skills reflect technologies I currently work with while continuing to grow in my early professional career.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid-2">
+        <div class="section-card">
+          <h3 class="section-title">Experience</h3>
+          <p><strong>Backend Developer — Khatawat Information Technology</strong><br>Karbala, Iraq • Sep 2025 – Present</p>
+          <ul class="list">
+            <li>Contributing to developing backend systems and web applications using Laravel.</li>
+            <li>Contributing to designing and managing MySQL databases.</li>
+            <li>Contributing to building REST APIs and backend logic.</li>
+          </ul>
+        </div>
+
+        <div class="section-card">
+          <h3 class="section-title">Education & Languages</h3>
+          <p><strong>Bachelor of Computer Technology Engineering</strong><br>Alsafwa University College, Karbala, Iraq</p>
+          <p style="margin-top:14px;"><strong>Arabic:</strong> Native</p>
+          <p><strong>English:</strong> Intermediate (able to read technical documentation, study courses, and basic communication)</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="padding-bottom:50px;">
+      <div class="footer-cta">
+        <h3 class="section-title" style="color:white;margin:0;">Let’s Connect</h3>
+        <p>Open to professional opportunities, collaborations, and building useful digital solutions.</p>
+        <div class="footer-links">
+          <a class="primary" href="mailto:abdabdali2010@gmail.com">Email Me</a>
+          <a href="https://github.com/sajjad-ali97" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/sajjad-ali-36b603284/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
