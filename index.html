@@ -18,6 +18,21 @@
       --shadow:0 10px 30px rgba(15,23,42,.06);
       --radius:26px;
     }
+    .brand-wrap{
+        display:flex;
+        align-items:center;
+        gap:14px;
+      }
+      
+     .brand-avatar{
+        width:56px;
+        height:56px;
+        border-radius:50%;
+        object-fit:cover;
+        border:1px solid var(--line);
+        box-shadow:var(--shadow);
+        flex-shrink:0;
+      }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
@@ -138,12 +153,12 @@
       color:var(--text);
     }
     .btn-secondary:hover{ background:#f1f5f9; }
-    .hero-grid{
-      display:grid;
-      grid-template-columns:220px 1fr;
-      gap:24px;
-      align-items:start;
-    }
+   .hero-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:24px;
+  align-items:start;
+}
     .hero-photo{
       background:var(--card);
       border:1px solid var(--line);
@@ -269,16 +284,19 @@
       .hero h2{ font-size:34px; }
       .nav-inner{ flex-direction:column; align-items:flex-start; }
       .menu{ gap:14px; }
-      .hero-photo{ max-width:320px; }
+    
     }
   </style>
 </head>
 <body>
   <header class="nav" id="siteHeader">
     <div class="container nav-inner">
-      <div class="brand">
-        <h1 data-i18n="brandName">Sajjad Ali Alhidary</h1>
-        <p data-i18n="brandRole">Full Stack Developer</p>
+     <div class="brand-wrap">
+        <img src="profile.jpg" alt="Sajjad Ali Alhidary portrait" class="brand-avatar" />
+        <div class="brand">
+          <h1 data-i18n="brandName">Sajjad Ali Alhidary</h1>
+          <p data-i18n="brandRole">Full Stack Developer</p>
+        </div>
       </div>
       <nav class="menu">
         <a href="#about" data-i18n="navAbout">About</a>
@@ -315,9 +333,6 @@
       </div>
 
       <div class="hero-grid">
-        <div class="hero-photo">
-          <img src="profile.jpg" alt="Sajjad Ali Alhidary portrait" />
-        </div>
         <div class="hero-card">
           <div class="info-box">
             <p class="label" data-i18n="locationLabel">Location</p>
