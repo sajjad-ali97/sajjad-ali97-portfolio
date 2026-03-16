@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,6 +14,9 @@
       --line:#e2e8f0;
       --primary:#0f172a;
       --accent:#2563eb;
+      --accent-soft:#eff6ff;
+      --shadow:0 10px 30px rgba(15,23,42,.06);
+      --radius:26px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -24,6 +27,9 @@
       color:var(--text);
       line-height:1.7;
     }
+    body.rtl{
+      direction:rtl;
+    }
     .container{
       width:min(1100px, 92%);
       margin:auto;
@@ -31,10 +37,17 @@
     .nav{
       position:sticky;
       top:0;
-      background:rgba(255,255,255,.9);
+      background:rgba(255,255,255,.92);
       backdrop-filter:blur(10px);
       border-bottom:1px solid var(--line);
-      z-index:20;
+      z-index:50;
+      transition:transform .28s ease, box-shadow .28s ease;
+    }
+    .nav.hidden{
+      transform:translateY(-100%);
+    }
+    .nav.scrolled{
+      box-shadow:0 8px 20px rgba(15,23,42,.06);
     }
     .nav-inner{
       display:flex;
@@ -56,24 +69,29 @@
       display:flex;
       gap:18px;
       flex-wrap:wrap;
+      align-items:center;
     }
-    .menu a{
+    .menu a,.lang-toggle{
       color:var(--muted);
       text-decoration:none;
       font-weight:600;
       font-size:14px;
+      background:none;
+      border:none;
+      cursor:pointer;
+      padding:0;
     }
-    .menu a:hover{color:var(--text)}
+    .menu a:hover,.lang-toggle:hover{color:var(--text)}
     .hero{
       padding:72px 0 36px;
       display:grid;
-      grid-template-columns:1.3fr .9fr;
-      gap:28px;
+      grid-template-columns:1.15fr .95fr;
+      gap:30px;
       align-items:center;
     }
     .badge{
       display:inline-block;
-      background:#eff6ff;
+      background:var(--accent-soft);
       color:#1d4ed8;
       border:1px solid #bfdbfe;
       padding:8px 14px;
@@ -99,7 +117,9 @@
       margin-top:26px;
     }
     .btn{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       padding:14px 20px;
       border-radius:16px;
       text-decoration:none;
@@ -117,15 +137,34 @@
       background:white;
       color:var(--text);
     }
-    .btn-secondary:hover{
-      background:#f1f5f9;
+    .btn-secondary:hover{ background:#f1f5f9; }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:220px 1fr;
+      gap:24px;
+      align-items:start;
+    }
+    .hero-photo{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:10px;
+      box-shadow:var(--shadow);
+      align-self:start;
+    }
+    .hero-photo img{
+      width:100%;
+      aspect-ratio:3/4;
+      object-fit:cover;
+      display:block;
+      border-radius:18px;
     }
     .hero-card{
       background:var(--card);
       border:1px solid var(--line);
-      border-radius:26px;
+      border-radius:var(--radius);
       padding:26px;
-      box-shadow:0 10px 30px rgba(15,23,42,.06);
+      box-shadow:var(--shadow);
     }
     .info-box{
       background:#f8fafc;
@@ -144,13 +183,11 @@
       margin:0;
       font-weight:700;
     }
-    section{
-      padding:22px 0;
-    }
+    section{ padding:22px 0; }
     .section-card{
       background:var(--card);
       border:1px solid var(--line);
-      border-radius:26px;
+      border-radius:var(--radius);
       padding:34px;
       box-shadow:0 10px 30px rgba(15,23,42,.05);
     }
@@ -158,10 +195,7 @@
       margin:0 0 10px;
       font-size:30px;
     }
-    .section-text{
-      margin:0;
-      color:var(--muted);
-    }
+    .section-text{ margin:0; color:var(--muted); }
     .grid-2{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -170,7 +204,7 @@
     .project{
       background:var(--card);
       border:1px solid var(--line);
-      border-radius:26px;
+      border-radius:var(--radius);
       padding:28px;
       box-shadow:0 10px 30px rgba(15,23,42,.05);
     }
@@ -184,14 +218,8 @@
       color:#1d4ed8;
       margin-bottom:14px;
     }
-    .project h4{
-      margin:0 0 10px;
-      font-size:22px;
-    }
-    .project p{
-      margin:0;
-      color:var(--muted);
-    }
+    .project h4{ margin:0 0 10px; font-size:22px; }
+    .project p{ margin:0; color:var(--muted); }
     .project a{
       display:inline-block;
       margin-top:16px;
@@ -205,30 +233,18 @@
       gap:20px 32px;
       margin-top:18px;
     }
-    .skill-item h5{
-      margin:0 0 4px;
-      font-size:16px;
-    }
-    .skill-item p{
-      margin:0;
-      color:var(--muted);
-    }
-    .list{
-      margin:14px 0 0;
-      padding-left:18px;
-      color:var(--muted);
-    }
+    .skill-item h5{ margin:0 0 4px; font-size:16px; }
+    .skill-item p{ margin:0; color:var(--muted); }
+    .list{ margin:14px 0 0; padding-left:18px; color:var(--muted); }
+    body.rtl .list{ padding-left:0; padding-right:18px; }
     .footer-cta{
       background:var(--primary);
       color:white;
-      border-radius:26px;
+      border-radius:var(--radius);
       padding:34px;
       box-shadow:0 10px 30px rgba(15,23,42,.10);
     }
-    .footer-cta p{
-      color:#cbd5e1;
-      margin:8px 0 0;
-    }
+    .footer-cta p{ color:#cbd5e1; margin:8px 0 0; }
     .footer-links{
       display:flex;
       gap:14px;
@@ -248,33 +264,28 @@
       color:var(--primary);
       border-color:white;
     }
-    @media (max-width: 900px){
-      .hero,.grid-2,.skills{
-        grid-template-columns:1fr;
-      }
-      .hero h2{
-        font-size:34px;
-      }
-      .nav-inner{
-        flex-direction:column;
-        align-items:flex-start;
-      }
+    @media (max-width: 980px){
+      .hero,.grid-2,.skills,.hero-grid{ grid-template-columns:1fr; }
+      .hero h2{ font-size:34px; }
+      .nav-inner{ flex-direction:column; align-items:flex-start; }
+      .menu{ gap:14px; }
+      .hero-photo{ max-width:320px; }
     }
   </style>
 </head>
 <body>
-
-  <header class="nav">
+  <header class="nav" id="siteHeader">
     <div class="container nav-inner">
       <div class="brand">
-        <h1>Sajjad Ali Alhidary</h1>
-        <p>Full Stack Developer</p>
+        <h1 data-i18n="brandName">Sajjad Ali Alhidary</h1>
+        <p data-i18n="brandRole">Full Stack Developer</p>
       </div>
       <nav class="menu">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" data-i18n="navAbout">About</a>
+        <a href="#projects" data-i18n="navProjects">Projects</a>
+        <a href="#skills" data-i18n="navSkills">Skills</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
+        <button class="lang-toggle" id="langToggle">العربية</button>
       </nav>
     </div>
   </header>
@@ -282,17 +293,18 @@
   <main class="container">
     <section class="hero">
       <div>
-        <span class="badge">Laravel • Full Stack • Portfolio</span>
-        <h2>Building clean and practical web solutions.</h2>
-        <p>
+        <span class="badge" data-i18n="badge">Laravel • Full Stack • Portfolio</span>
+        <h2 data-i18n="heroTitle">Building clean and practical web solutions.</h2>
+        <p data-i18n="heroText">
           Full Stack Developer focused on Laravel-based web applications, backend systems,
           database design, and practical digital solutions for companies, laboratories,
           and business platforms.
         </p>
 
         <div class="actions">
-          <a class="btn btn-primary" href="Sajjad_Ali_Alhidary_CV.pdf" download>Download CV</a>
-          <a class="btn btn-secondary" href="#projects">View Projects</a>
+          <a class="btn btn-primary" href="Sajjad_Ali_Alhidary_CV.pdf" download data-i18n="downloadResume">Download Resume (PDF)</a>
+          <a class="btn btn-secondary" href="#projects" data-i18n="viewProjects">View Projects</a>
+          <a class="btn btn-secondary" href="tel:07732250410" data-i18n="callNow">Call Now</a>
         </div>
 
         <div class="actions" style="margin-top:14px;">
@@ -302,26 +314,31 @@
         </div>
       </div>
 
-      <div class="hero-card">
-        <div class="info-box">
-          <p class="label">Location</p>
-          <p class="value">Karbala, Iraq</p>
+      <div class="hero-grid">
+        <div class="hero-photo">
+          <img src="profile.jpg" alt="Sajjad Ali Alhidary portrait" />
         </div>
-        <div class="info-box">
-          <p class="label">Focus</p>
-          <p class="value">Laravel, REST APIs, MySQL, TailwindCSS</p>
-        </div>
-        <div class="info-box">
-          <p class="label">Current Goal</p>
-          <p class="value">Build modern web platforms and grow as a strong Full Stack Developer.</p>
+        <div class="hero-card">
+          <div class="info-box">
+            <p class="label" data-i18n="locationLabel">Location</p>
+            <p class="value" data-i18n="locationValue">Karbala, Iraq</p>
+          </div>
+          <div class="info-box">
+            <p class="label" data-i18n="focusLabel">Focus</p>
+            <p class="value" data-i18n="focusValue">Laravel, REST APIs, MySQL, TailwindCSS</p>
+          </div>
+          <div class="info-box">
+            <p class="label" data-i18n="goalLabel">Current Goal</p>
+            <p class="value" data-i18n="goalValue">Build modern web platforms and grow as a strong Full Stack Developer.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="about">
       <div class="section-card">
-        <h3 class="section-title">About Me</h3>
-        <p class="section-text">
+        <h3 class="section-title" data-i18n="aboutTitle">About Me</h3>
+        <p class="section-text" data-i18n="aboutText">
           I build web applications with a strong focus on backend logic, clean structure,
           database design, and practical user-facing solutions. I enjoy learning through
           official documentation, improving continuously, and working on real projects that
@@ -331,59 +348,59 @@
     </section>
 
     <section id="projects">
-      <h3 class="section-title">Featured Projects</h3>
-      <p class="section-text">Selected work that reflects my current technical direction.</p>
+      <h3 class="section-title" data-i18n="projectsTitle">Featured Projects</h3>
+      <p class="section-text" data-i18n="projectsText">Selected work that reflects my current technical direction.</p>
 
       <div class="grid-2" style="margin-top:18px;">
         <article class="project">
-          <span class="tag">Engineering Web App</span>
-          <h4>ANFIS Road Maintenance System</h4>
-          <p>
+          <span class="tag" data-i18n="project1Tag">Engineering Web App</span>
+          <h4 data-i18n="project1Title">ANFIS Road Maintenance System</h4>
+          <p data-i18n="project1Text">
             Scientific web application for estimating road maintenance costs using
             engineering parameters and intelligent models.
           </p>
-          <a href="https://anfis.online/" target="_blank">View Project →</a>
+          <a href="https://anfis.online/" target="_blank" data-i18n="viewProject">View Project →</a>
         </article>
 
         <article class="project">
-          <span class="tag" style="background:#ecfdf5;color:#047857;">Business Website</span>
-          <h4>Mawrid Al Arab Company Website</h4>
-          <p>
+          <span class="tag" style="background:#ecfdf5;color:#047857;" data-i18n="project2Tag">Business Website</span>
+          <h4 data-i18n="project2Title">Mawrid Al Arab Company Website</h4>
+          <p data-i18n="project2Text">
             Company website presenting products, categories, and business information
             with a clean commercial interface.
           </p>
-          <a href="http://77.237.236.206:8080/" target="_blank">View Project →</a>
+          <a href="http://77.237.236.206:8080/" target="_blank" data-i18n="viewProject">View Project →</a>
         </article>
       </div>
     </section>
 
     <section id="skills">
       <div class="section-card">
-        <h3 class="section-title">Technical Skills</h3>
+        <h3 class="section-title" data-i18n="skillsTitle">Technical Skills</h3>
         <div class="skills">
           <div class="skill-item">
-            <h5>Backend</h5>
+            <h5 data-i18n="backendTitle">Backend</h5>
             <p>PHP, Laravel, REST APIs</p>
           </div>
           <div class="skill-item">
-            <h5>Frontend</h5>
+            <h5 data-i18n="frontendTitle">Frontend</h5>
             <p>HTML, CSS, TailwindCSS, JavaScript, Alpine.js</p>
           </div>
           <div class="skill-item">
-            <h5>Database</h5>
-            <p>MySQL, Database Design, Indexing, Optimization</p>
+            <h5 data-i18n="databaseTitle">Database</h5>
+            <p data-i18n="databaseText">MySQL, Database Design, Indexing, Optimization</p>
           </div>
           <div class="skill-item">
-            <h5>Architecture</h5>
-            <p>MVC, Service Layer, Learning Clean Architecture principles</p>
+            <h5 data-i18n="architectureTitle">Architecture</h5>
+            <p data-i18n="architectureText">MVC, Service Layer, Learning Clean Architecture principles</p>
           </div>
           <div class="skill-item">
-            <h5>Tools</h5>
+            <h5 data-i18n="toolsTitle">Tools</h5>
             <p>Git, GitHub, Linux, Nginx</p>
           </div>
           <div class="skill-item">
-            <h5>Note</h5>
-            <p>These skills reflect technologies I currently work with while continuing to grow in my early professional career.</p>
+            <h5 data-i18n="noteTitle">Note</h5>
+            <p data-i18n="noteText">These skills reflect technologies I currently work with while continuing to grow in my early professional career.</p>
           </div>
         </div>
       </div>
@@ -392,30 +409,32 @@
     <section>
       <div class="grid-2">
         <div class="section-card">
-          <h3 class="section-title">Experience</h3>
-          <p><strong>Backend Developer — Khatawat Information Technology</strong><br>Karbala, Iraq • Sep 2025 – Present</p>
+          <h3 class="section-title" data-i18n="experienceTitle">Experience</h3>
+          <p><strong data-i18n="experienceRole">Backend Developer — Khatawat Information Technology</strong><br><span data-i18n="experienceMeta">Karbala, Iraq • Sep 2025 – Present</span></p>
           <ul class="list">
-            <li>Contributing to developing backend systems and web applications using Laravel.</li>
-            <li>Contributing to designing and managing MySQL databases.</li>
-            <li>Contributing to building REST APIs and backend logic.</li>
+            <li data-i18n="exp1">Contributing to developing backend systems and web applications using Laravel.</li>
+            <li data-i18n="exp2">Contributing to designing and managing MySQL databases.</li>
+            <li data-i18n="exp3">Contributing to building REST APIs and backend logic.</li>
           </ul>
         </div>
 
         <div class="section-card">
-          <h3 class="section-title">Education & Languages</h3>
-          <p><strong>Bachelor of Computer Technology Engineering</strong><br>Alsafwa University College, Karbala, Iraq</p>
-          <p style="margin-top:14px;"><strong>Arabic:</strong> Native</p>
-          <p><strong>English:</strong> Intermediate (able to read technical documentation, study courses, and basic communication)</p>
+          <h3 class="section-title" data-i18n="educationTitle">Education & Languages</h3>
+          <p><strong data-i18n="educationDegree">Bachelor of Computer Technology Engineering</strong><br><span data-i18n="educationPlace">Alsafwa University College, Karbala, Iraq</span></p>
+          <p style="margin-top:14px;"><strong data-i18n="arabicTitle">Arabic:</strong> <span data-i18n="arabicValue">Native</span></p>
+          <p><strong data-i18n="englishTitle">English:</strong> <span data-i18n="englishValue">Intermediate (able to read technical documentation, study courses, and basic communication)</span></p>
         </div>
       </div>
     </section>
 
     <section id="contact" style="padding-bottom:50px;">
       <div class="footer-cta">
-        <h3 class="section-title" style="color:white;margin:0;">Let’s Connect</h3>
-        <p>Open to professional opportunities, collaborations, and building useful digital solutions.</p>
+        <h3 class="section-title" style="color:white;margin:0;" data-i18n="contactTitle">Let’s Connect</h3>
+        <p data-i18n="contactText">Open to professional opportunities, collaborations, and building useful digital solutions.</p>
         <div class="footer-links">
-          <a class="primary" href="mailto:abdabdali2010@gmail.com">Email Me</a>
+          <a class="primary" href="Sajjad_Ali_Alhidary_CV.pdf" download data-i18n="downloadResume">Download Resume (PDF)</a>
+          <a href="mailto:abdabdali2010@gmail.com">Email</a>
+          <a href="tel:07732250410" data-i18n="callNow">Call Now</a>
           <a href="https://github.com/sajjad-ali97" target="_blank">GitHub</a>
           <a href="https://www.linkedin.com/in/sajjad-ali-36b603284/" target="_blank">LinkedIn</a>
         </div>
@@ -423,5 +442,163 @@
     </section>
   </main>
 
+  <script>
+    const translations = {
+      en: {
+        brandName: "Sajjad Ali Alhidary",
+        brandRole: "Full Stack Developer",
+        navAbout: "About",
+        navProjects: "Projects",
+        navSkills: "Skills",
+        navContact: "Contact",
+        badge: "Laravel • Full Stack • Portfolio",
+        heroTitle: "Building clean and practical web solutions.",
+        heroText: "Full Stack Developer focused on Laravel-based web applications, backend systems, database design, and practical digital solutions for companies, laboratories, and business platforms.",
+        downloadResume: "Download Resume (PDF)",
+        viewProjects: "View Projects",
+        callNow: "Call Now",
+        locationLabel: "Location",
+        locationValue: "Karbala, Iraq",
+        focusLabel: "Focus",
+        focusValue: "Laravel, REST APIs, MySQL, TailwindCSS",
+        goalLabel: "Current Goal",
+        goalValue: "Build modern web platforms and grow as a strong Full Stack Developer.",
+        aboutTitle: "About Me",
+        aboutText: "I build web applications with a strong focus on backend logic, clean structure, database design, and practical user-facing solutions. I enjoy learning through official documentation, improving continuously, and working on real projects that solve business and scientific needs.",
+        projectsTitle: "Featured Projects",
+        projectsText: "Selected work that reflects my current technical direction.",
+        project1Tag: "Engineering Web App",
+        project1Title: "ANFIS Road Maintenance System",
+        project1Text: "Scientific web application for estimating road maintenance costs using engineering parameters and intelligent models.",
+        project2Tag: "Business Website",
+        project2Title: "Mawrid Al Arab Company Website",
+        project2Text: "Company website presenting products, categories, and business information with a clean commercial interface.",
+        viewProject: "View Project →",
+        skillsTitle: "Technical Skills",
+        backendTitle: "Backend",
+        frontendTitle: "Frontend",
+        databaseTitle: "Database",
+        databaseText: "MySQL, Database Design, Indexing, Optimization",
+        architectureTitle: "Architecture",
+        architectureText: "MVC, Service Layer, Learning Clean Architecture principles",
+        toolsTitle: "Tools",
+        noteTitle: "Note",
+        noteText: "These skills reflect technologies I currently work with while continuing to grow in my early professional career.",
+        experienceTitle: "Experience",
+        experienceRole: "Backend Developer — Khatawat Information Technology",
+        experienceMeta: "Karbala, Iraq • Sep 2025 – Present",
+        exp1: "Contributing to developing backend systems and web applications using Laravel.",
+        exp2: "Contributing to designing and managing MySQL databases.",
+        exp3: "Contributing to building REST APIs and backend logic.",
+        educationTitle: "Education & Languages",
+        educationDegree: "Bachelor of Computer Technology Engineering",
+        educationPlace: "Alsafwa University College, Karbala, Iraq",
+        arabicTitle: "Arabic:",
+        arabicValue: "Native",
+        englishTitle: "English:",
+        englishValue: "Intermediate (able to read technical documentation, study courses, and basic communication)",
+        contactTitle: "Let’s Connect",
+        contactText: "Open to professional opportunities, collaborations, and building useful digital solutions."
+      },
+      ar: {
+        brandName: "سجاد علي الحيدري",
+        brandRole: "مطوّر ويب متكامل",
+        navAbout: "من أنا",
+        navProjects: "المشاريع",
+        navSkills: "المهارات",
+        navContact: "التواصل",
+        badge: "لارافيل • فول ستاك • بورتفوليو",
+        heroTitle: "أبني حلول ويب عملية ونظيفة.",
+        heroText: "مطوّر ويب متكامل أركّز على تطبيقات الويب المبنية بـ Laravel، وأنظمة الباك إند، وتصميم قواعد البيانات، والحلول الرقمية العملية للشركات والمختبرات والمنصات التجارية.",
+        downloadResume: "تنزيل السيرة الذاتية (PDF)",
+        viewProjects: "عرض المشاريع",
+        callNow: "اتصال مباشر",
+        locationLabel: "الموقع",
+        locationValue: "كربلاء، العراق",
+        focusLabel: "التركيز",
+        focusValue: "Laravel، REST APIs، MySQL، TailwindCSS",
+        goalLabel: "الهدف الحالي",
+        goalValue: "بناء منصات ويب حديثة والتطور كمطوّر Full Stack قوي.",
+        aboutTitle: "من أنا",
+        aboutText: "أبني تطبيقات ويب مع تركيز قوي على منطق الباك إند، والبنية النظيفة، وتصميم قواعد البيانات، والحلول العملية الموجهة للمستخدم. أستمتع بالتعلم من التوثيق الرسمي، والتطور المستمر، والعمل على مشاريع حقيقية تخدم احتياجات الأعمال والجوانب العلمية.",
+        projectsTitle: "أبرز المشاريع",
+        projectsText: "أعمال مختارة تعكس توجهي التقني الحالي.",
+        project1Tag: "تطبيق هندسي",
+        project1Title: "نظام ANFIS لصيانة الطرق",
+        project1Text: "تطبيق ويب علمي لتقدير تكاليف صيانة الطرق باستخدام المعاملات الهندسية والنماذج الذكية.",
+        project2Tag: "موقع أعمال",
+        project2Title: "موقع شركة مورد العرب",
+        project2Text: "موقع شركة يعرض المنتجات والأقسام ومعلومات الأعمال بواجهة تجارية نظيفة.",
+        viewProject: "عرض المشروع ←",
+        skillsTitle: "المهارات التقنية",
+        backendTitle: "الواجهة الخلفية",
+        frontendTitle: "الواجهة الأمامية",
+        databaseTitle: "قواعد البيانات",
+        databaseText: "MySQL، تصميم قواعد البيانات، الفهرسة، تحسين الأداء",
+        architectureTitle: "الهيكلية البرمجية",
+        architectureText: "MVC، Service Layer، التعلّم المستمر لمبادئ Clean Architecture",
+        toolsTitle: "الأدوات",
+        noteTitle: "ملاحظة",
+        noteText: "هذه المهارات تمثل التقنيات التي أعمل بها حالياً مع الاستمرار في التطور خلال بداياتي المهنية.",
+        experienceTitle: "الخبرة",
+        experienceRole: "مطوّر Backend — شركة خطوات لتكنولوجيا المعلومات",
+        experienceMeta: "كربلاء، العراق • سبتمبر 2025 – حتى الآن",
+        exp1: "المساهمة في تطوير أنظمة الباك إند وتطبيقات الويب باستخدام Laravel.",
+        exp2: "المساهمة في تصميم وإدارة قواعد بيانات MySQL.",
+        exp3: "المساهمة في بناء REST APIs ومنطق الباك إند.",
+        educationTitle: "التعليم واللغات",
+        educationDegree: "بكالوريوس هندسة تقنيات الحاسوب",
+        educationPlace: "كلية الصفوة الجامعة، كربلاء، العراق",
+        arabicTitle: "العربية:",
+        arabicValue: "اللغة الأم",
+        englishTitle: "الإنكليزية:",
+        englishValue: "مستوى متوسط (القدرة على قراءة التوثيق التقني، دراسة الكورسات، والتواصل الأساسي)",
+        contactTitle: "لنتواصل",
+        contactText: "منفتح على الفرص المهنية والتعاون وبناء حلول رقمية مفيدة."
+      }
+    };
+
+    let currentLang = 'en';
+    const html = document.documentElement;
+    const body = document.body;
+    const langToggle = document.getElementById('langToggle');
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      html.lang = lang;
+      html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      body.classList.toggle('rtl', lang === 'ar');
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      langToggle.textContent = lang === 'en' ? 'العربية' : 'English';
+      localStorage.setItem('portfolioLang', lang);
+    }
+
+    langToggle.addEventListener('click', () => {
+      setLanguage(currentLang === 'en' ? 'ar' : 'en');
+    });
+
+    const savedLang = localStorage.getItem('portfolioLang') || 'en';
+    setLanguage(savedLang);
+
+    const header = document.getElementById('siteHeader');
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      header.classList.toggle('scrolled', currentScrollY > 8);
+
+      if (currentScrollY > lastScrollY && currentScrollY > 120) {
+        header.classList.add('hidden');
+      } else {
+        header.classList.remove('hidden');
+      }
+      lastScrollY = currentScrollY;
+    });
+  </script>
 </body>
 </html>
