@@ -18,21 +18,29 @@
       --shadow:0 10px 30px rgba(15,23,42,.06);
       --radius:26px;
     }
-    .brand-wrap{
-        display:flex;
-        align-items:center;
-        gap:14px;
-      }
-      
-     .brand-avatar{
-        width:56px;
-        height:56px;
-        border-radius:50%;
-        object-fit:cover;
-        border:1px solid var(--line);
-        box-shadow:var(--shadow);
-        flex-shrink:0;
-      }
+   .brand-wrap{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  justify-content:flex-start;
+}
+
+.brand-avatar{
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  object-fit:cover;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  flex-shrink:0;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:24px;
+  align-items:start;
+}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
